@@ -44,12 +44,12 @@ public class MealPostController {
 	}
 
 	@GetMapping(value = "/mealpost/new")
-	public String newBlog(MealPost mealPost) {
-		return "blogpost/new";
+	public String newMeal(MealPost mealPost) {
+		return "mealpost/new";
 	}
 
 	@PostMapping(value = "/mealpost")
-	public String addNewBlogPost(MealPost mealPost, Model model) {
+	public String addNewMealPost(MealPost mealPost, Model model) {
 		// We do not want to create a new instance everytime,
 		// instead we can pass in the blogPost as is.
 		// Springboot is doing the hard work for us in the background
