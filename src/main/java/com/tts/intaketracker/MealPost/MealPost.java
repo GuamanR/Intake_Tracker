@@ -14,15 +14,15 @@ public class MealPost{
 
 	private String title;
 	private String author;
-	private String blogEntry;
+	private String mealEntry;
 
 	public MealPost() {
 	}
 
-	public MealPost (String title, String author, String blogEntry) {
+	public MealPost (String title, String author, String mealEntry) {
 		this.title = title;
 		this.author = author;
-		this.blogEntry = blogEntry;
+		this.mealEntry = mealEntry;
 	}
 
 	public Long getId() {
@@ -45,17 +45,17 @@ public class MealPost{
 		this.author = author;
 	}
 
-	public String getBlogEntry() {
-		return blogEntry;
+	public String getMealEntry() {
+		return mealEntry;
 	}
 
-	public void setBlogEntry(String blogEntry) {
-		this.blogEntry = blogEntry;
+	public void setMealEntry(String mealEntry) {
+		this.mealEntry = mealEntry;
 	}
 
 	@Override
 	public String toString() {
-		return "MealPost [author=" + author + ", blogEntry=" + blogEntry + ", id=" + id + ", title=" + title + "]";
+		return "MealPost [author=" + author + ", mealEntry=" + mealEntry + ", id=" + id + ", title=" + title + "]";
 	}
 
 }

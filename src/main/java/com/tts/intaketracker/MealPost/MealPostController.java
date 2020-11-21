@@ -40,15 +40,15 @@ public class MealPostController {
 		// this line makes the posts array list available to the webpage to be viewed
 		model.addAttribute("posts", posts);
 
-		return "blogpost/index";
+		return "mealpost/index";
 	}
 
-	@GetMapping(value = "/blogpost/new")
+	@GetMapping(value = "/mealpost/new")
 	public String newBlog(MealPost mealPost) {
 		return "blogpost/new";
 	}
 
-	@PostMapping(value = "/blogpost")
+	@PostMapping(value = "/mealpost")
 	public String addNewBlogPost(MealPost mealPost, Model model) {
 		// We do not want to create a new instance everytime,
 		// instead we can pass in the blogPost as is.
@@ -57,11 +57,11 @@ public class MealPostController {
 
 		model.addAttribute("title", mealPost.getTitle());
 		model.addAttribute("author", mealPost.getAuthor());
-		model.addAttribute("blogEntry", mealPost.getBlogEntry());
-		return "blogpost/result";
+		model.addAttribute("mealEntry", mealPost.getMealEntry());
+		return "mealpost/result";
 	}
 
-	@PostMapping(value = "/blogpost/update/{id}")
+	@PostMapping(value = "/mealpost/update/{id}")
 	public String updateExistingPost(@PathVariable Long id, MealPost mealPost, Model model) {
 		Optional<MealPost> post = mealPostRepository.findById(id);
 
@@ -71,31 +71,31 @@ public class MealPostController {
 
 			actualPost.setTitle(mealPost.getTitle());
 			actualPost.setAuthor(mealPost.getAuthor());
-			actualPost.setBlogEntry(mealPost.getBlogEntry());
+			actualPost.setMealEntry(mealPost.getMealEntry());
 
 			mealPostRepository.save(actualPost);
 
-			model.addAttribute("blogPost", actualPost);
+			model.addAttribute("mealPost", actualPost);
 
 		} else {
 			// Handle the error here
 		}
 
-		return "blogpost/result";
+		return "mealpost/result";
 
 	}
 
-	@RequestMapping(value = "/blogpost/delete/{id}")
+	@RequestMapping(value = "/mealpost/delete/{id}")
 	public String deletePostWithId(@PathVariable Long id, MealPost mealPost) {
 		// Takes id from the URL path, passes it into deleteById from the CRUD
 		// repository
 		mealPostRepository.deleteById(id);
 
-		return "blogpost/delete";
+		return "mealpost/delete";
 	}
 
 	// This is the mapping to edit a specific post
-	@RequestMapping(value = "/blogpost/edit/{id}")
+	@RequestMapping(value = "/mealpost/edit/{id}")
 	public String editPostWithId(@PathVariable Long id, Model model) {
 		// Use blogPostRepo to find post by id
 		// It returns an Optional<T>
@@ -110,14 +110,14 @@ public class MealPostController {
 			// if the post came through, store it in result
 			result = editPost.get();
 			// add attribute to page, accessible through model
-			model.addAttribute("blogPost", result);
+			model.addAttribute("mealPost", result);
 		} else {
 			// Need to handle error here, you could use a html error page
 			return "Error";
 		}
 
 		// Show browser the blogpost/edit page
-		return "blogpost/edit";
+		return "mealpost/edit";
 	}
 
 }
